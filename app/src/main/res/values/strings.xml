@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Jewish Alarm Clock</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="firstTab">Alarms</string>
+    <string name="secondTab">Zmanim List</string>
+    <string name="thirdTab">Timer</string>
+</resources>
