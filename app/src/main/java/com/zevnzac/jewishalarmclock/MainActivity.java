@@ -1,29 +1,28 @@
 package com.zevnzac.jewishalarmclock;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import java.util.ArrayList;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<AlarmCardView> mAlarmlist;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mlayoutManager;
-
     private FloatingActionButton addButton;
+    private AlarmBuilder alarmBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createExampleList();
+        alarmBuilder = new AlarmBuilder();
+        alarmBuilder.createExampleList();
         buildRecyclerView();
 
         addButton = findViewById(R.id.floatingActionButton);
@@ -37,28 +36,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void insertItem() {
-        mAlarmlist.add(new AlarmCardView(R.drawable.ic_alarm, "7:00", "AM"));
-        mAdapter.notifyItemInserted(mAlarmlist.size());
+    public void insertItem(){
+        AlarmBuilder.insertItem();
+        TextView tv = findViewById(R.id.alarmCount);
+        tv.setText(Integer.toString(AlarmBuilder.getAlarmList().size()));
     }
 
-    public void removeItem(int position) {
-        mAlarmlist.remove(position);
-        mAdapter.notifyItemRemoved(position);
+    public void openAddAlarm(){
+        Intent intent = new Intent(this, AddAlarmActivity.class);
+        startActivity(intent);
     }
 
-    public void createExampleList() {
-        mAlarmlist = new ArrayList<>();
-    }
 
     public void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.alarmRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mlayoutManager = new LinearLayoutManager(this);
-        mAdapter = new AlarmAdapter(mAlarmlist);
-
         mRecyclerView.setLayoutManager(mlayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(alarmBuilder.getAdapter());
 
     }
 
