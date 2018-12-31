@@ -50,6 +50,6 @@
         android:timePickerMode="spinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:padding="20dp"/> <!-- 20dp padding from all the sides of a time picker -->
+        android:padding="20dp"/>
 
 </android.support.constraint.ConstraintLayout>
