@@ -1,12 +1,18 @@
 package com.zevnzac.jewishalarmclock;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +34,12 @@ public class AlarmsFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ArrayList<AlarmCardView> mAlarmViewlist;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mlayoutManager;
+    private FloatingActionButton addButton;
 
     public AlarmsFragment() {
         // Required empty public constructor
@@ -104,5 +116,72 @@ public class AlarmsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+//        saveAlarmList();
+        addButton = getView().findViewById(R.id.floatingActionButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAddAlarm();
+            }
+        });
+        buildRecyclerView();
+    }
+
+//    private void loadAlarmList() {
+//        Gson gson = new Gson();
+//        String json = sharedPreferences.getString("alarm list", null);
+//        Type type = new TypeToken<ArrayList<AlarmObject>>() {}.getType();
+//        ArrayList<String> stringList = gson.fromJson(json, type);
+//        if (stringList == null) {
+//            stringList = new ArrayList<>();
+//        }
+//        ArrayList<AlarmObject> alarmList = new ArrayList<>();
+//        for (String string : stringList)
+//            alarmList.add(new AlarmObject(string));
+//        list.setList(alarmList);
+//    }
+//
+//    private void saveAlarmList() {
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        Gson gson = new Gson();
+//        String json = gson.toJson(list.getStringList());
+//        editor.putString("alarm list", json);
+//    }
+
+    private void updateAlarmViewList() {
+        mAlarmViewlist = getAlarmViewList();
+        mAdapter = new AlarmCardViewAdapter(mAlarmViewlist);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private ArrayList<AlarmCardView> getAlarmViewList() {
+        ArrayList<AlarmCardView> viewlist = new ArrayList<>();
+        for (AlarmObject alarm: AlarmList.get().getList())
+            viewlist.add(new AlarmCardView(alarm));
+        return viewlist;
+    }
+
+    public void removeItem(int position) {
+        mAlarmViewlist.remove(position);
+        mAdapter.notifyItemRemoved(position);
+    }
+
+    private void buildRecyclerView() {
+        mRecyclerView = getView().findViewById(R.id.alarmRecyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mlayoutManager = new LinearLayoutManager(this.getContext());
+        updateAlarmViewList();
+        mRecyclerView.setLayoutManager(mlayoutManager);
+    }
+
+    private void openAddAlarm(){
+        Intent intent = new Intent(this.getContext(), AddAlarmActivity.class);
+        startActivity(intent);
     }
 }

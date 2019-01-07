@@ -38,7 +38,7 @@ public class AddAlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_alarm);
-        goBack = new Intent(this, MainActivity.class);
+        goBack = new Intent(this, MainTabsActivity.class);
         cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
