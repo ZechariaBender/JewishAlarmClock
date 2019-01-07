@@ -11,23 +11,23 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHolder> {
+public class AlarmCardViewAdapter extends RecyclerView.Adapter<AlarmCardViewAdapter.AlarmViewHolder> {
 
     private ArrayList<AlarmCardView> mAlarmList;
 
     public static class AlarmViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
-        public TextView mTimeview, mSecondaryView;
+        public TextView mTimeview, mAMPMView;
 
         public AlarmViewHolder(/*@NonNull*/ View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.alarmIconView);
             mTimeview = itemView.findViewById(R.id.alarmTimeView);
-            mSecondaryView = itemView.findViewById(R.id.alarmSecondaryView);
+            mAMPMView = itemView.findViewById(R.id.AMPMView);
         }
     }
 
-    public AlarmAdapter(ArrayList<AlarmCardView> alarmList) {
+    public AlarmCardViewAdapter(ArrayList<AlarmCardView> alarmList) {
         mAlarmList = alarmList;
     }
 
@@ -44,7 +44,10 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHol
         AlarmCardView currentAlarm = mAlarmList.get(i);
         alarmViewHolder.mImageView.setImageResource(currentAlarm.getImageResource());
         alarmViewHolder.mTimeview.setText(currentAlarm.getTime());
-        alarmViewHolder.mSecondaryView.setText(currentAlarm.getSecondary());
+        if (AlarmCardView.is24HourDisplay)
+            alarmViewHolder.mAMPMView.setText("");
+        else
+            alarmViewHolder.mAMPMView.setText(currentAlarm.getAMPM());
     }
 
     @Override

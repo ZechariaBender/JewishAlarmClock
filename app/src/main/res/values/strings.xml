@@ -5,4 +5,5 @@
     <string name="firstTab">Alarms</string>
     <string name="secondTab">Zmanim List</string>
     <string name="thirdTab">Timer</string>
+    <string name="action_settings">Settings</string>
 </resources>
