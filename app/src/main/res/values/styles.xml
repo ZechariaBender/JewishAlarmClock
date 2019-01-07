@@ -16,6 +16,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="timePickerStyle">
         <item name="android:textSize">48dp</item>
         <!--<item name="android:textFontWeight">800</item>-->
