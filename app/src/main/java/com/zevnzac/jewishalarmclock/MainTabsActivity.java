@@ -1,5 +1,6 @@
 package com.zevnzac.jewishalarmclock;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,7 +43,7 @@ public class MainTabsActivity extends AppCompatActivity implements
         if (list.getList() == null)
             loadAlarmList();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -60,12 +61,17 @@ public class MainTabsActivity extends AppCompatActivity implements
         sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        saveAlarmList();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_tabs, menu);
-        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -74,13 +80,16 @@ public class MainTabsActivity extends AppCompatActivity implements
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_exit:
+                finish();
+                System.exit(0);
+            default:
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

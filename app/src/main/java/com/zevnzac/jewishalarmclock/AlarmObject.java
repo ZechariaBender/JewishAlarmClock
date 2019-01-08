@@ -23,8 +23,7 @@ public class AlarmObject {
     }
 
     public String toString() {
-        String string = Integer.toString(mHour)
-               + ":" + Integer.toString(mMinute);
+        String string = Integer.toString(mHour).concat(":").concat(Integer.toString(mMinute));
         return string;
     }
 
