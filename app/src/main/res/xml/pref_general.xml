@@ -1,0 +1,17 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pref_content">
+
+    <SwitchPreference
+    android:defaultValue="true"
+    android:key="dark_mode_switch"
+    android:summary="@string/dark_mode_summary"
+    android:title="@string/dark_mode" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="hour_view_switch"
+        android:summary="@string/hour_view_summary"
+        android:title="@string/hour_view" />
+
+</PreferenceScreen>
