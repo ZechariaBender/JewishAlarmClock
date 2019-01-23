@@ -25,10 +25,10 @@ public class AlarmList {
         this.list = list;
     }
 
-    public ArrayList<String> getStringList() {
-        ArrayList<String> strings = new ArrayList<>();
-        for (AlarmObject alarm: getList())
-            strings.add(alarm.toString());
-        return strings;
-    }
+//    public ArrayList<String> getStringList() {
+//        ArrayList<String> strings = new ArrayList<>();
+//        for (AlarmObject alarm: getList())
+//            strings.add(alarm.toString());
+//        return strings;
+//    }
 }

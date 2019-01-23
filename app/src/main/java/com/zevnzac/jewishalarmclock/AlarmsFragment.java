@@ -14,15 +14,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AlarmsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AlarmsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AlarmsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,19 +31,12 @@ public class AlarmsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mlayoutManager;
     private FloatingActionButton addButton;
+    private AlarmList list;
 
     public AlarmsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AlarmsFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static AlarmsFragment newInstance(String param1, String param2) {
         AlarmsFragment fragment = new AlarmsFragment();
@@ -76,6 +60,7 @@ public class AlarmsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        MainTabsActivity.getHourView(getActivity());
         return inflater.inflate(R.layout.fragment_alarms, container, false);
     }
 
@@ -103,16 +88,6 @@ public class AlarmsFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -121,7 +96,6 @@ public class AlarmsFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-//        saveAlarmList();
         addButton = getView().findViewById(R.id.floatingActionButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,51 +103,33 @@ public class AlarmsFragment extends Fragment {
                 openAddAlarm();
             }
         });
+        if (MainTabsActivity.nightMode)
+            addButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_alarm_add_black));
+        else
+            addButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_alarm_add_white));
         buildRecyclerView();
     }
 
-//    private void loadAlarmList() {
-//        Gson gson = new Gson();
-//        String json = sharedPreferences.getString("alarm list", null);
-//        Type type = new TypeToken<ArrayList<AlarmObject>>() {}.getType();
-//        ArrayList<String> stringList = gson.fromJson(json, type);
-//        if (stringList == null) {
-//            stringList = new ArrayList<>();
-//        }
-//        ArrayList<AlarmObject> alarmList = new ArrayList<>();
-//        for (String string : stringList)
-//            alarmList.add(new AlarmObject(string));
-//        list.setList(alarmList);
-//    }
-//
-//    private void saveAlarmList() {
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        String json = gson.toJson(list.getStringList());
-//        editor.putString("alarm list", json);
-//    }
-
     private void updateAlarmViewList() {
         mAlarmViewlist = getAlarmViewList();
-        mAdapter = new AlarmCardViewAdapter(mAlarmViewlist);
+        mAdapter = new AlarmCardViewAdapter(mAlarmViewlist, this.getContext());
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
 
     private ArrayList<AlarmCardView> getAlarmViewList() {
+        list = AlarmList.get();
         ArrayList<AlarmCardView> viewlist = new ArrayList<>();
-        for (AlarmObject alarm: AlarmList.get().getList())
+        for (AlarmObject alarm: list.getList()){
             viewlist.add(new AlarmCardView(alarm));
+        }
         return viewlist;
-    }
-
-    public void removeItem(int position) {
-        mAlarmViewlist.remove(position);
-        mAdapter.notifyItemRemoved(position);
     }
 
     private void buildRecyclerView() {
         mRecyclerView = getView().findViewById(R.id.alarmRecyclerView);
+        if (MainTabsActivity.nightMode)
+            mRecyclerView.setBackgroundColor(getResources().getColor(R.color.background_dark));
         mRecyclerView.setHasFixedSize(true);
         mlayoutManager = new LinearLayoutManager(this.getContext());
         updateAlarmViewList();
