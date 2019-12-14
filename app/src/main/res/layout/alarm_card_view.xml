@@ -5,66 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
-    app:cardCornerRadius="4dp"
-    tools:context="AlarmCardView">
+    app:cardCornerRadius="4dp">
 
     <RelativeLayout
         android:id="@+id/cardViewLayout"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/alarmIconView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:padding="2dp" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"/>
 
-        <TextView
-            android:id="@+id/alarmTimeView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_toEndOf="@+id/alarmIconView"
+            android:id="@+id/time_view"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="11dp"
-            android:layout_marginLeft="11dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="11dp"
-            android:layout_toEndOf="@id/alarmIconView"
-            android:layout_toRightOf="@id/alarmIconView"
-            android:text="7:00"
-            android:textSize="50sp" />
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="30dp">
 
-        <TextView
-            android:id="@+id/AMPMView"
+            <TextView
+                android:id="@+id/label_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="18sp"/>
+
+            <LinearLayout
+            android:id="@+id/regular_textview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="37dp"
-            android:layout_toEndOf="@id/alarmTimeView"
-            android:layout_toRightOf="@id/alarmTimeView"
-            android:text="AM"
-            android:textSize="30sp" />
+            android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/time_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:layout_marginEnd="3dp"/>
+
+                <TextView
+                    android:id="@+id/AMPM_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/zman_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/repeat_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/enable_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
             android:checked="true"
-            tools:checked="true" />
+            tools:checked="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

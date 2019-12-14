@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TimePicker xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/time_picker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:timePickerMode="spinner"
+    android:theme="@style/timePickerStyle"
+    tools:layout_editor_absoluteX="50dp"
+    tools:layout_editor_absoluteY="63dp"
+    tools:targetApi="lollipop">
+</TimePicker>

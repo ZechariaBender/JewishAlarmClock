@@ -45,15 +45,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static class GeneralPreferenceFragment extends PreferenceFragment {
         SwitchPreference darkModeSwitch, hourViewSwitch;
         private SharedPreferences sharedPreferences;
-        boolean nightMode, hourView;
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            nightMode = sharedPreferences.getBoolean("dark_mode_switch", true);
             darkModeSwitch = (SwitchPreference) findPreference("dark_mode_switch");
-            final boolean finalNightMode = nightMode;
             darkModeSwitch.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -64,8 +61,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }});
 
-
-            hourView = sharedPreferences.getBoolean("hour_view_switch", true);
             hourViewSwitch = (SwitchPreference) findPreference("hour_view_switch");
             hourViewSwitch.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override

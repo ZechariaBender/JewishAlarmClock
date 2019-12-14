@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" >
+        <NumberPicker
+            android:id="@+id/hour_picker"
+            android:theme="@style/numberPickerStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-50dp"
+            android:layout_marginBottom="-50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="hours"
+            android:textSize="25sp"/>
+        <NumberPicker
+            android:id="@+id/minute_picker"
+            android:theme="@style/numberPickerStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-50dp"
+            android:layout_marginBottom="-50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="minutes"
+            android:textSize="25sp"/>
+    </LinearLayout>
+    <Spinner
+        android:theme="@style/numberPickerStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/before_after_spinner"
+        android:layout_gravity="center"
+        android:spinnerMode="dropdown"
+        android:layout="@layout/zman_preference_layout" />
+    <Spinner
+        android:theme="@style/numberPickerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/zmanim_spinner"
+        android:layout_gravity="center"
+        android:spinnerMode="dialog"
+        android:layout="@layout/zman_preference_layout"
+        android:layout_margin="15dp"
+        android:textAlignment="center"/>
+</LinearLayout>

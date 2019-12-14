@@ -23,15 +23,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
         android:layout_marginBottom="44dp"
         android:clickable="true"
         android:scaleX="1.8"
         android:scaleY="1.8"
-        app:elevation="4dp"
+        app:elevation="10dp"
         app:fabCustomSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:focusable="true" />
 </android.support.constraint.ConstraintLayout>

@@ -15,6 +15,35 @@
         android:paddingTop="@dimen/appbar_padding_top"
         app:title="@string/app_name">
 
+        <Button
+        android:layout_gravity="center"
+        android:id="@+id/location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:text="Unknown location"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:paddingTop="5dp"
+        android:paddingBottom="3dp"
+        android:drawableStart="@drawable/ic_location_on_black_24dp" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/location_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:text="Unknown location"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="3dp"
+            android:drawableStart="@drawable/ic_location_on_black_24dp" />
+
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
@@ -31,12 +60,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_text_2" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/tabItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_text_3" />
 
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>

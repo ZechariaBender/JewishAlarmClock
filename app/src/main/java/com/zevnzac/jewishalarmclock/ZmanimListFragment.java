@@ -3,10 +3,19 @@ package com.zevnzac.jewishalarmclock;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import com.zevnzac.jewishalarmclock.zmanim.ZmanimList;
+
+import java.util.Calendar;
 
 
 /**
@@ -17,7 +26,7 @@ import android.view.ViewGroup;
  * Use the {@link ZmanimListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ZmanimListFragment extends Fragment {
+public class ZmanimListFragment extends ListFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,6 +58,36 @@ public class ZmanimListFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final ZmanimList zl = new ZmanimList(Calendar.getInstance(),MainTabsActivity.getLocation());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1, zl.getStringList()) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                text1.setText(zl.getStringList()[position]);
+                text1.setTextSize(20);
+                Calendar c = Calendar.getInstance();
+                c.setTime(zl.getList().get(position).getTime());
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+                String time = hour + ":" + (minute < 10 ? "0" : "") + minute;
+                text2.setText(time);
+                text2.setTextSize(25);
+                return view;
+            }
+        };
+        setListAdapter(adapter);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override

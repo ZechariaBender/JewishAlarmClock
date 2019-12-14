@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.zevnzac.jewishalarmclock.AlarmRingtonePreference
+        app:iconSpaceReserved="false"
+        android:key="ringtone"
+        android:enabled="false"
+        android:title="Ringtone"
+        android:ringtoneType="all"
+        android:persistent="false"
+        android:showDefault="true"
+        android:showSilent="true" />
+    <CheckBoxPreference android:key="vibrate"
+        app:iconSpaceReserved="false"
+        android:persistent="false"
+        android:title="Vibrate"/>
+    <com.zevnzac.jewishalarmclock.RepeatPreference
+        app:iconSpaceReserved="false"
+        android:persistent="false"
+        android:key="repeat"
+        android:title="Repeat" />
+    <EditTextPreference android:key="label"
+        app:iconSpaceReserved="false"
+        android:persistent="false"
+        android:title="Label"
+        android:dialogTitle="Label" />
+</PreferenceScreen>
