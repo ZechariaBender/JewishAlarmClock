@@ -15,10 +15,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA9XTaGP_HKeGQyJ6rp4ORlsr3LbULRxwg"/>
-
         <activity android:name=".AddAlarmActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:theme="@style/AppTheme.NoActionBar"/>
